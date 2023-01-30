@@ -9,8 +9,6 @@ function App() {
     setLogin(true);
   };
 
-  console.log(user);
-
   return (
     <>
       {!login ? (
