@@ -17,6 +17,9 @@ export const getAddTransactionObject = (
 
   const lastItem = transactionFiltered[transactionFiltered.length - 1];
 
+  if (body.type === Type.Debit && body.amount > lastItem.newTotal)
+    throw new Error("Insufficient funds");
+
   const getNewTotal = () => {
     switch (body.type) {
       case Type.Credit:
