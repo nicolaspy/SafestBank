@@ -1,16 +1,12 @@
-import { Balance, Transaction } from "../types";
-import transactionsData from "./transactionsData.json";
-
-const transactions: Transaction[] =
-  transactionsData as unknown as Transaction[];
+import { Balance } from "../types";
+import { getTransactionsById } from "../utils/common";
 
 export const getBalance = (personId: number): Balance => {
-  const transactionFiltered = transactions.filter((transaction) => {
-    return transaction.personId === personId;
-  });
+  const transactionFiltered = getTransactionsById(personId);
 
   if (transactionFiltered.length === 0) {
     return {
+      personId,
       balance: 0,
     };
   }
@@ -18,5 +14,5 @@ export const getBalance = (personId: number): Balance => {
   const lastNewTotal =
     transactionFiltered[transactionFiltered.length - 1].newTotal;
 
-  return { balance: lastNewTotal };
+  return { personId: personId, balance: lastNewTotal };
 };

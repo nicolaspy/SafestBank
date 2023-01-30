@@ -16,5 +16,6 @@ export interface Transaction {
 export type AddTransaction = Pick<Transaction, "amount" | "type" | "personId">;
 
 export interface Balance {
+  personId: number;
   balance: number;
 }

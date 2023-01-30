@@ -1,52 +1,12 @@
-import { AddTransaction, Transaction, Type } from "../types";
+import { AddTransaction, Transaction } from "../types";
+import { getAddTransactionObject } from "../utils/common";
 import transactionsData from "./transactionsData.json";
 
 const transactions: Transaction[] =
   transactionsData as unknown as Transaction[];
 
-export const getTransactions = (id: number): Transaction[] => {
-  return transactions.filter((transaction) => {
-    return transaction.personId === id;
-  });
-};
-
-export const getBalance = (): Transaction[] => transactions;
-
 export const addTransaction = (body: AddTransaction): Transaction => {
-  const transactionFiltered = transactions.filter((transaction) => {
-    return transaction.personId === +body.personId;
-  });
-
-  const lastItem = transactionFiltered[transactionFiltered.length - 1];
-
-  const getNewTotal = () => {
-    switch (body.type) {
-      case Type.Credit:
-        if (transactionFiltered.length === 0) {
-          return body.amount;
-        } else {
-          return lastItem.newTotal + body.amount;
-        }
-      case Type.Debit:
-        if (transactionFiltered.length === 0) {
-          throw new Error("Insufficient funds");
-        } else {
-          return lastItem.newTotal - body.amount;
-        }
-      default:
-        return body.amount;
-    }
-  };
-
-  const newTransaction = {
-    id: transactions.length + 1,
-    oldTotal: transactionFiltered.length === 0 ? 0 : lastItem.newTotal,
-    newTotal: getNewTotal(),
-    createdAt: new Date(),
-    ...body,
-  };
-
+  const newTransaction = getAddTransactionObject(body, transactions);
   transactions.push(newTransaction);
-  transactionFiltered.push(newTransaction);
   return newTransaction;
 };

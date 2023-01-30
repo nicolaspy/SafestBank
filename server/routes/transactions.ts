@@ -1,11 +1,12 @@
 import express from "express";
 import * as transactionsService from "../services/transactions";
+import { getTransactionsById } from "../utils/common";
 import toNewTransaction from "./helpers";
 
 const router = express.Router();
 
 router.get("/:personId", (req, res) => {
-  res.send(transactionsService.getTransactions(+req.params.personId));
+  res.json(getTransactionsById(+req.params.personId));
 });
 
 router.use(express.json());

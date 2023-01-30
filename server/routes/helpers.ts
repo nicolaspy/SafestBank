@@ -1,8 +1,6 @@
 import { AddTransaction, Type } from "../types";
 
 const parsePersonId = (id: any): string => {
-  console.log(isNumber(id));
-
   if (!isString(id) && !isNumber(id)) {
     throw new Error("Person ID must be a string");
   }
