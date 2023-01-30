@@ -9,6 +9,12 @@ export const getBalance = (personId: number): Balance => {
     return transaction.personId === personId;
   });
 
+  if (transactionFiltered.length === 0) {
+    return {
+      balance: 0,
+    };
+  }
+
   const lastNewTotal =
     transactionFiltered[transactionFiltered.length - 1].newTotal;
 

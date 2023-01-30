@@ -17,25 +17,21 @@ export const addTransaction = (body: AddTransaction): Transaction => {
     return transaction.personId === +body.personId;
   });
 
+  const lastItem = transactionFiltered[transactionFiltered.length - 1];
+
   const getNewTotal = () => {
     switch (body.type) {
       case Type.Credit:
         if (transactionFiltered.length === 0) {
           return body.amount;
         } else {
-          return (
-            transactionFiltered[transactionFiltered.length - 1].newTotal +
-            body.amount
-          );
+          return lastItem.newTotal + body.amount;
         }
       case Type.Debit:
         if (transactionFiltered.length === 0) {
-          return 0 - body.amount;
+          throw new Error("Insufficient funds");
         } else {
-          return (
-            transactionFiltered[transactionFiltered.length - 1].newTotal -
-            body.amount
-          );
+          return lastItem.newTotal - body.amount;
         }
       default:
         return body.amount;
@@ -44,10 +40,7 @@ export const addTransaction = (body: AddTransaction): Transaction => {
 
   const newTransaction = {
     id: transactions.length + 1,
-    oldTotal:
-      transactionFiltered.length === 0
-        ? 0
-        : transactionFiltered[transactionFiltered.length - 1].newTotal,
+    oldTotal: transactionFiltered.length === 0 ? 0 : lastItem.newTotal,
     newTotal: getNewTotal(),
     createdAt: new Date(),
     ...body,
