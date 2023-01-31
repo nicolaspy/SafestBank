@@ -17,16 +17,16 @@ export const buildTransactionColumns = (): ColumnsType<Transaction> => [
     title: "Balance",
     dataIndex: "newTotal",
     key: "newTotal",
-    render: (text: string) => {
-      return `$${text}`;
+    render: (text: number) => {
+      return `$${new Intl.NumberFormat("en-US").format(text)}`;
     },
   },
   {
     title: "Amount",
     dataIndex: "amount",
     key: "amount",
-    render: (text: string) => {
-      return `$${text}`;
+    render: (text: number) => {
+      return `$${new Intl.NumberFormat("en-US").format(text)}`;
     },
   },
   {
