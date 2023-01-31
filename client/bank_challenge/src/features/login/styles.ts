@@ -1,4 +1,3 @@
-import { Divider, Typography } from "antd";
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -45,22 +44,4 @@ export const LoginItem = styled.div`
       color: white;
     }
   }
-`;
-
-export const FormButton = styled.div`
-  .ant-btn {
-    margin: 0;
-    background-color: #236328;
-    color: white;
-    display: flex;
-    &:hover {
-      background-color: #2c792e;
-      color: white;
-    }
-  }
-`;
-
-export const WelcomeMessage = styled(Typography)`
-  font-size: 24px;
-  padding-left: 50px;
 `;

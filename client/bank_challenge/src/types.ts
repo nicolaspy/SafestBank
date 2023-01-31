@@ -19,3 +19,7 @@ export interface Balance {
   personId: number;
   balance: number;
 }
+
+export type TransactionFormType = {
+  amount: number;
+};

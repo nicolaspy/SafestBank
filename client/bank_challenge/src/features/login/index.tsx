@@ -1,16 +1,11 @@
 import { Button, Input, notification } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
-import Account from "./account";
-import safestBank from "./shared/images/safestBank.png";
+import Account from "../transaction";
+import safestBank from "../../shared/images/safestBank.png";
 
 import { Container, LoginForm, LoginItem, LogoContainer } from "./styles";
 import { NotificationPlacement } from "antd/es/notification/interface";
-
-export enum Type {
-  Debit = "debit",
-  Credit = "credit",
-}
 
 function App() {
   const [user, setUser] = useState("");
