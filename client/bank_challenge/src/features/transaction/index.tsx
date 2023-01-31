@@ -1,8 +1,8 @@
-import { Divider, Layout, Menu, MenuProps, Spin, Tabs, Tag } from "antd";
+import { Divider, Layout, Menu, MenuProps, Spin, Tabs } from "antd";
 import { TransactionOutlined } from "@ant-design/icons";
 
 import React, { useEffect, useState } from "react";
-import Table, { ColumnsType } from "antd/es/table";
+import Table from "antd/es/table";
 import TransactionForm from "../../components/transactionForm";
 import safestBank from "../../shared/images/safestBank.png";
 import { Balance, Transaction, Type } from "../../types";
@@ -24,6 +24,16 @@ function Account({ user }: Props) {
     {
       label: "Transactions",
       key: "transactions",
+      icon: <TransactionOutlined />,
+    },
+    {
+      label: "Profile",
+      key: "profile",
+      icon: <TransactionOutlined />,
+    },
+    {
+      label: "Settings",
+      key: "settings",
       icon: <TransactionOutlined />,
     },
   ];
@@ -104,9 +114,17 @@ function Account({ user }: Props) {
       </WelcomeContainer>
 
       <Content style={{ padding: "0 50px" }}>
-        <Tabs style={{ padding: "50px" }} type="card" items={buildTabs} />
+        <Tabs
+          style={{ padding: "50px", color: "green" }}
+          type="card"
+          items={buildTabs}
+        />
         <Divider>All transactions</Divider>
-        <Table columns={buildTransactionColumns()} dataSource={reversedData} />
+        <Table
+          columns={buildTransactionColumns()}
+          dataSource={reversedData}
+          rowKey={(record) => record.id}
+        />
       </Content>
     </Layout>
   );

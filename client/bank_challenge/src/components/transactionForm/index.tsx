@@ -53,10 +53,13 @@ function TransactionForm({ personId, balance, setIsSuccessful, type }: Props) {
       body: JSON.stringify(newDeposit),
     };
 
-    console.log(values.amount);
-    console.log(balance);
-
     if (values.amount > balance && type === Type.Debit) {
+      form.setFields([
+        {
+          name: "amount",
+          errors: ["Insufficient funds, please try again."],
+        },
+      ]);
       return failNotification(
         "Insufficient funds, please try again.",
         "topRight"

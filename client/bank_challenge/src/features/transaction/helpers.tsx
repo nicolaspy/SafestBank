@@ -3,7 +3,6 @@ import React from "react";
 import { Tag } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { Transaction, Type } from "../../types";
-import TransactionForm from "../../components/transactionForm";
 
 export const buildTransactionColumns = (): ColumnsType<Transaction> => [
   {
