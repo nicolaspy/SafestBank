@@ -1,7 +1,7 @@
 import { AddTransaction, Type } from "../types";
 
-const parsePersonId = (id: any): string => {
-  if (!isString(id) && !isNumber(id)) {
+const parsePersonId = (id: any): number => {
+  if (!isNumber(id)) {
     throw new Error("Person ID must be a string");
   }
   return id;
