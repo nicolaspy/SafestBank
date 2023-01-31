@@ -5,6 +5,9 @@ import React, { useEffect, useState } from "react";
 import Table, { ColumnsType } from "antd/es/table";
 import { Type } from "./App";
 import TransactionForm from "./transactionForm";
+import safestBank from "./shared/images/safestBank.png";
+import { WelcomeMessage } from "./styles";
+import { Balance } from "./types";
 
 type Transactions = {
   id: number;
@@ -23,6 +26,7 @@ interface Props {
 }
 function Account({ user }: Props) {
   const [data, setData] = useState<Transactions[]>([]);
+  const [balance, setBalance] = useState<Balance>();
   const [status, setStatus] = useState<"pending" | "resolved">("pending");
   const [isSuccessful, setIsSuccessful] = useState(false);
 
@@ -43,9 +47,15 @@ function Account({ user }: Props) {
     setStatus("resolved");
     setIsSuccessful(false);
   };
+  const getBalance = () => {
+    fetch("http://localhost:3001/api/balance/" + user)
+      .then((res) => res.json())
+      .then((data: Balance) => setBalance(data));
+  };
 
   useEffect(() => {
     getTransaction();
+    getBalance();
   }, [isSuccessful]);
 
   if (status === "pending") {
@@ -130,13 +140,39 @@ function Account({ user }: Props) {
   return (
     <Layout className="layout">
       <Header>
-        <div className="logo" />
         <Menu theme="dark" mode="horizontal" items={items} />
       </Header>
+      <div
+        style={{
+          paddingTop: 50,
+          paddingLeft: 50,
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <img src={safestBank} alt="Logo" />
+      </div>
+
+      <div
+        style={{
+          marginLeft: 50,
+          marginRight: 50,
+          marginTop: 50,
+          borderRadius: "25px",
+          border: "2px solid #73AD21",
+          backgroundColor: "#efe7bc",
+          padding: "20px",
+        }}
+      >
+        <WelcomeMessage>Hey there User {user}!</WelcomeMessage>
+        <WelcomeMessage>
+          Your current Balance is: ${balance?.balance}
+        </WelcomeMessage>
+      </div>
+
       <Content style={{ padding: "0 50px" }}>
         <Tabs style={{ padding: "50px" }} type="card" items={tabs} />
         <Divider>All transactions</Divider>
-
         <Table columns={tableColumns} dataSource={reversedData} />
       </Content>
     </Layout>

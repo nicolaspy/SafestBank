@@ -3,6 +3,7 @@ import { NotificationPlacement } from "antd/es/notification/interface";
 import React from "react";
 import { AddTransaction } from "./account";
 import { Type } from "./App";
+import { FormButton } from "./styles";
 
 type TransactionForm = {
   amount: number;
@@ -60,7 +61,7 @@ function TransactionForm({ personId, setIsSuccessful, type }: Props) {
   };
 
   return (
-    <>
+    <FormButton>
       {contextHolder}
 
       <Form
@@ -68,7 +69,7 @@ function TransactionForm({ personId, setIsSuccessful, type }: Props) {
         name="withdraw"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
-        style={{ maxWidth: 600 }}
+        style={{ maxWidth: 600, marginTop: 20 }}
         onFinish={onDeposit}
       >
         <Form.Item
@@ -90,7 +91,7 @@ function TransactionForm({ personId, setIsSuccessful, type }: Props) {
           </Button>
         </Form.Item>
       </Form>
-    </>
+    </FormButton>
   );
 }
 
