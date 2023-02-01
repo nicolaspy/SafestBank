@@ -27,9 +27,7 @@ function TransactionForm({ personId, balance, setIsSuccessful, type }: Props) {
 
     api.open({
       message: `Success!`,
-      description: `You have successfully ${getVerb(
-        amount
-      )} $${amount} your account.`,
+      description: `You have successfully ${getVerb(amount)} your account.`,
       placement,
     });
   };
