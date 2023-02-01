@@ -20,14 +20,16 @@ function TransactionForm({ personId, balance, setIsSuccessful, type }: Props) {
     amount: number,
     placement: NotificationPlacement
   ) => {
-    const getVerb = () => {
-      if (type === Type.Credit) return "deposited to";
-      else return "withdrawn of";
+    const getVerb = (amount: number) => {
+      if (type === Type.Credit) return `deposited $${amount} into`;
+      else return `withdrawn $${amount} of`;
     };
 
     api.open({
       message: `Success!`,
-      description: `You have successfully ${getVerb()} $${amount} your account.`,
+      description: `You have successfully ${getVerb(
+        amount
+      )} $${amount} your account.`,
       placement,
     });
   };
@@ -83,7 +85,7 @@ function TransactionForm({ personId, balance, setIsSuccessful, type }: Props) {
 
       <Form
         form={form}
-        name="withdraw"
+        name={type}
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         style={{ maxWidth: 600, marginTop: 20 }}
@@ -105,7 +107,7 @@ function TransactionForm({ personId, balance, setIsSuccessful, type }: Props) {
           </Form.Item>
           <FormButton>
             <Form.Item>
-              <Button type="primary" htmlType="submit">
+              <Button id={`submit-${type}`} type="primary" htmlType="submit">
                 Submit
               </Button>
             </Form.Item>

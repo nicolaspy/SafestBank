@@ -3,6 +3,7 @@ import React from "react";
 import { Tag } from "antd";
 import { ColumnsType } from "antd/es/table";
 import { Transaction, Type } from "../../types";
+import { getNumbertoAmount } from "../../utlis/common";
 
 export const buildTransactionColumns = (): ColumnsType<Transaction> => [
   {
@@ -18,7 +19,7 @@ export const buildTransactionColumns = (): ColumnsType<Transaction> => [
     dataIndex: "newTotal",
     key: "newTotal",
     render: (text: number) => {
-      return `$${new Intl.NumberFormat("en-US").format(text)}`;
+      return `$${getNumbertoAmount(text)}`;
     },
   },
   {
@@ -26,7 +27,7 @@ export const buildTransactionColumns = (): ColumnsType<Transaction> => [
     dataIndex: "amount",
     key: "amount",
     render: (text: number) => {
-      return `$${new Intl.NumberFormat("en-US").format(text)}`;
+      return `$${getNumbertoAmount(text)}`;
     },
   },
   {
