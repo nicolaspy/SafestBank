@@ -96,7 +96,6 @@ function Account({ user }: Props) {
       ),
     },
   ];
-  const options2 = { style: "currency", currency: "USD" };
 
   return (
     <Layout className="layout">
@@ -109,7 +108,7 @@ function Account({ user }: Props) {
 
       <WelcomeContainer>
         <WelcomeMessage>Hey there User {user}!</WelcomeMessage>
-        <WelcomeMessage>
+        <WelcomeMessage id="balance">
           Your current Balance is: $
           {new Intl.NumberFormat("en-US").format(balance?.balance || 0)}
         </WelcomeMessage>

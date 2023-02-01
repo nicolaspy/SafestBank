@@ -72,8 +72,7 @@ function TransactionForm({ personId, balance, setIsSuccessful, type }: Props) {
           successNotification(values.amount, "topRight");
         })
         .catch((response) => {
-          response.json();
-          failNotification("faillll", "topRight");
+          failNotification(response, "topRight");
         });
     form.setFieldsValue({ amount: "" });
   };
@@ -98,7 +97,7 @@ function TransactionForm({ personId, balance, setIsSuccessful, type }: Props) {
               { required: true, message: "Please input the amount" },
               {
                 pattern: new RegExp(REGEXP.NUMBERS),
-                message: "Please input numbers only",
+                message: "Input numbers only",
               },
             ]}
           >
