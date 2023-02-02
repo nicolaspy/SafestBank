@@ -222,4 +222,3 @@ when logged in\
 - when a user wants to make a deposit, displays Success! notification message and updates balance\
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
