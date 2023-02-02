@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 import { Balance } from "../../src/types";
 import { getNumbertoAmount } from "../../src/utlis/common";
 
