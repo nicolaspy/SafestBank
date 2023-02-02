@@ -2,6 +2,7 @@ import request from "supertest";
 import { getBalance } from "../server/services/balance";
 import { AddTransaction, Balance, Type } from "../server/types";
 import createServer from "../server/utils/connect";
+import { expect } from "@jest/globals";
 
 const app = createServer();
 

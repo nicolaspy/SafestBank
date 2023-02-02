@@ -85,8 +85,8 @@ describe("when logged in", () => {
       });
     });
     describe("when a user wants to make a deposit", () => {
-      it("displays Success! notification message", () => {
-        cy.fixture("balanceData.json").then((fixture: Balance) => {
+      it("displays Success! notification message and updates balance", () => {
+        cy.fixture("no_balance.json").then((fixture: Balance) => {
           const id = fixture.personId.toString();
           const creditAmount = 1;
           cy.intercept(
@@ -111,6 +111,9 @@ describe("when logged in", () => {
             `You have successfully deposited $${getNumbertoAmount(
               creditAmount
             )} into your account`
+          );
+          cy.contains(
+            `Balance is: $${getNumbertoAmount(fixture.balance + creditAmount)}`
           );
         });
       });
