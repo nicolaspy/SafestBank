@@ -181,3 +181,12 @@ endpoint: POST /api/transactions/:personId\
   }\
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- Tests -->
+## Tests
+
+- [ ] Jest:
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
