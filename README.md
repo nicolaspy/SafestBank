@@ -121,27 +121,17 @@ This is an example of how to list things you need to use the software and how to
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-1. Login page:\
-. login using any number, make sure you use the same number for the id and password.\
-. preloaded with transactions for id "1" and "2"
+1. Login page:
+- login using any number, make sure you use the same number for the id and password.
+- preloaded with transactions for id "1" and "2"
 
-2. Transactions page:\
-. if login with an user with transactions, the should be shown in a table.\
-. all the transactions are stored in memory.\
-. withdraw and deposit are enabled with required validations.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- Planned features -->
-## Planned features
-
-- [ ] Implement transactions among users. (Same endpoint, reciving a new Type "transfer" with new param "transferPersonId").
-- [ ] DB implementation.
-- [ ] auth Login implementation, Logout
+2. Transactions page:
+- if login with an user with transactions, the should be shown in a table.
+- all the transactions are stored in memory.
+- withdraw and deposit are enabled with required validations.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- API -->
 ## API
@@ -186,39 +176,53 @@ endpoint: POST /api/transactions/:personId\
 <!-- Tests -->
 ## Tests
 
-- [ ] Jest:
+Jest:
+
    ```sh
    cd /
    npm test
    ```
-Balance Tests:\
-      - given the person has no balance, should return a 200 status and a balance of 0\
-      - given the person has balance,  should return a 200 status and the correct balance\
-      - given the person has balance and a new transaction as credit is sent, should return a 200 status and the correct balance
+Balance Tests:
+- given the person has no balance, should return a 200 status and a balance of 0
+- given the person has balance,  should return a 200 status and the correct balance
+- given the person has balance and a new transaction as credit is sent, should return a 200 status and the correct balance
 
-Transaction Tests:\
-- given the person has no transactions, should return a 200 status and an empty array\
-- given the person has transactions, should return a 200 status and an array with the transactions\
-- given the transaction is type credit and the person has no transaction, should return a 200 status and the new transaction\
-- given the transaction is type credit and the person has transactions, should return a 200 status and an array with the transactions\
-- given the transaction is type debit and the person has no transactions, should return a 400 status\
+Transaction Tests:
+- given the person has no transactions, should return a 200 status and an empty array
+- given the person has transactions, should return a 200 status and an array with the transactions
+- given the transaction is type credit and the person has no transaction, should return a 200 status and the new transaction
+- given the transaction is type credit and the person has transactions, should return a 200 status and an array with the transactions
+- given the transaction is type debit and the person has no transactions, should return a 400 status
 - given the transaction is type debit and the person has transactions, should return a 200 status and an array with the transaction
 
-- [ ] Cypress:
+
+
+Cypress:
+
    ```sh
    cd /client/bank_challenge
    npm run integration
 
    choose transaction.cy.ts file and run the test
    ```
-Tests:\
+Tests:
 
-- should login correctly\
-- shows an error when login unsuccessful\
-when logged in\
-- displays the correct balance of the current logged in User\
-- when a user wants to withdraw more than his current balance, displays Insufficient funds as error message\
-- when a user wants to withdraw less than his current balance, displays Success! notification message\
-- when a user wants to make a deposit, displays Success! notification message and updates balance\
+- should login correctly
+- shows an error when login unsuccessful
+when logged in:\
+- displays the correct balance of the current logged in User
+- when a user wants to withdraw more than his current balance, displays Insufficient funds as error message
+- when a user wants to withdraw less than his current balance, displays Success! notification message
+- when a user wants to make a deposit, displays Success! notification message and updates balance
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- Planned features -->
+## Planned features
+
+- [ ] Implement transactions among users. (Same endpoint, reciving a new Type "transfer" with new param "transferPersonId").
+- [ ] DB implementation.
+- [ ] auth Login implementation, Logout
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
